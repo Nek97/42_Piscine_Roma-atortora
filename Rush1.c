@@ -22,15 +22,15 @@ int gen_n(int **matrix, int row, int col, int range)
     int j;
     int fact;
     int temp;
-    
+
     fact = ft_factorial(range - col - 1);
     if(row == 0) //Se sto nello prima riga il numero sara' il primo valore della colonna
         return (col + 1);
     n = 1;
     j = 0;
-    while(j < col || j == 0)//Cerco in tutta la riga il numero generato
+    while(j < col)//Cerco in tutta la riga il numero generato
     {
-        if(matrix[row][j] == n || matrix[row][col] == 0)//Se lo trovo
+        if(matrix[row][j] == n)//Se lo trovo
             {
                 n++;//Genero il prosimo
                 j = -1;//E torno all'inizio della riga
@@ -40,7 +40,8 @@ int gen_n(int **matrix, int row, int col, int range)
             temp = row - fact;
             while (temp >= 0 && j != -1)
             {
-                if (matrix[row - fact][col] == n)
+                printf("temp => %d\n", temp);
+                if (matrix[temp][col] == n)
                 {
                     n++;//Genero il prosimo
                     j = -1;//E torno all'inizio della riga
@@ -74,8 +75,8 @@ int gen_rec(int **matrix, int row, int col, int range)
             if(row != gen_rec(matrix, row, col + 1, range))
                 if(col != 0)
                     return row + 1;
-                else
-                    row++;
+                row++;
+                    
             i++;
         }
         return row;
@@ -84,22 +85,23 @@ int gen_rec(int **matrix, int row, int col, int range)
 
 int main()
 {
-    int **matrix  = (int **)(malloc(24 * sizeof(int *)));
+  int max = 4;
+    int **matrix  = (int **)(malloc(ft_factorial(max) * sizeof(int *)));
     int i = 0;
-    while(i<24)
+    while(i<ft_factorial(max))
     {
-        *(matrix + i) = (int *)(malloc(4 * sizeof(int)));
+        *(matrix + i) = (int *)(malloc(max * sizeof(int)));
         i++;
     }
-    gen_rec(matrix, 0, 0, 4);
+    gen_rec(matrix, 0, 0, max);
     
     int j = 0;
     printf("\n***********************\n");
     i = 0;
-    while(i<24)
+    while(i<ft_factorial(max))
     {
         j = 0;
-        while(j<4)
+        while(j<max)
         {
             printf("%d ", matrix[i][j]);
             j++;
