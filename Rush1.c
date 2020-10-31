@@ -20,12 +20,15 @@ int gen_n(int **matrix, int row, int col, int range)
 {
     int n;
     int j;
+    int i;
     int fact;
     int temp;
 
     fact = ft_factorial(range - col - 1);
     if(row == 0) //Se sto nello prima riga il numero sara' il primo valore della colonna
         return (col + 1);
+    if(col == 0 && row >= fact)
+      return matrix[row - fact][col]+1;
     n = 1;
     j = 0;
     while(j < col)//Cerco in tutta la riga il numero generato
@@ -37,8 +40,9 @@ int gen_n(int **matrix, int row, int col, int range)
             }
         else
         {
+            i = 0;
             temp = row - fact;
-            while (temp >= 0 && j != -1)
+            while (temp >= 0 && i < (range - col - 1) && j != -1)
             {
                 printf("temp => %d\n", temp);
                 if (matrix[temp][col] == n)
@@ -47,6 +51,7 @@ int gen_n(int **matrix, int row, int col, int range)
                     j = -1;//E torno all'inizio della riga
                 }
                 temp -= fact;
+                i++;
             }
         }
         j++;
