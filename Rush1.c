@@ -119,7 +119,7 @@ void generate_borders(int **matrix, int range, int rows)
 }
 /****************************************************************************/
 
-void excludecombs(int **combs, int i)
+void excludecombs(int **combs, int i,int row)
 {
 	int n;
 	int k;
@@ -134,23 +134,41 @@ void excludecombs(int **combs, int i)
 			{
 				if (combs[k][n] == combs[i][n])
 				{
-					combs[k][size + 2] = i; 
+					combs[k][size + 2] = row; 
 				}
 			}
 			k++;
 		}
 		n++;
 	}
+
+        printf("Start\n");
+int j;
+int max = size;
+    i = 0;
+    while(i<ft_factorial(size))
+    {
+        j = 0;
+        while(j<max+3)
+        {
+            printf("%d ", combs[i][j]);
+            j++;
+        }
+        printf("\n");
+        i++;
+    }
+        printf("End\n");
 }
 
-void clearcombs(int **combs, int i)
+void clearcombs(int **combs, int i,int row)
 {
+        printf("!!!!!!!!!!!!!!!!Clear\n");
 	int n;
 
 	n = 0;
 	while (n < ft_factorial(size))
 	{	
-		if (combs[n][size + 2] == i)
+		if (combs[n][size + 2] == row)
 		{
 			combs[n][size + 2] = -1;
 		}
@@ -167,10 +185,8 @@ int recursive(int **res, int **combs, int riga, int **inputs )
 		return 1;
 	while (i < ft_factorial(size))
 	{
-      printf("Ao\n");
 		while (i < ft_factorial(size) && combs[i][size + 2] != -1)
 		{
-      printf("Skippo %d\n", i);
       if(i == 23)
         break;
       i++;
@@ -180,11 +196,11 @@ int recursive(int **res, int **combs, int riga, int **inputs )
       j = -1;
       while(++j< size)
         res[riga][j] = combs[i][j];
-			excludecombs(combs, i);
+			excludecombs(combs, i, riga);
 			if(recursive(res, combs, riga + 1, inputs))
 				return 1;
 			else
-				clearcombs(combs, i);	
+				clearcombs(combs, i, riga);	
 		}
 		i++;
 	}
