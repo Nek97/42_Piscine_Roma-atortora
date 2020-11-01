@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -107,7 +108,7 @@ void generate_borders(int **matrix, int range, int rows)
     matrix[i][range] = reads;
     reads = 1;
     max = matrix[i][range - 1];
-    while(--j > 0)
+    while(--j >= 0)
       if(matrix[i][j] > max)
         max = new_max(&reads, matrix, i, j);
     matrix[i][range + 1] = reads;
