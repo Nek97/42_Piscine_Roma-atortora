@@ -1,0 +1,14 @@
+int ft_factorial(int n);
+void wrong_n(int *n, int *j, int fact);
+int gen_n(int **matrix, int row, int col, int range);
+int call_gen(int **matrix, int row, int col, int range);
+int gen_rec(int **matrix, int row, int col, int range);
+int new_max(int *reads, int **matrix, int row, int col);
+void generate_borders(int **matrix, int range, int rows);
+void excludecombs(int **combs, int i,int row, int size);
+void clearcombs(int **combs,int row, int size);
+int recursive(int ***very_big_pp, int riga, int size );
+int get_inputs(char *str, int **inputs, int size);
+int checkArgs(char *str);
+void error(int n);
+
