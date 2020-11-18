@@ -22,7 +22,7 @@
 - R01 : 0% (A few errors, almost works for all N-sized squares but you need to fix it) 
 - R02 : 60% (Need to Free all Malloc)
 
-- BSQ : 100% (Copied from https://github.com/ekmbcd/42, pls star him for this!)
+- BSQ : 100% (Copied from https://github.com/ekmbcd/Piscine-42Rome-2020, pls star him for this!)
 
 - Exam 00 : 80%
 - Exam 01 : 80%
